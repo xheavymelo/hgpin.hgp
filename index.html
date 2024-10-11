@@ -1,0 +1,148 @@
+<!DOCTYPE html>  
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dpto. de Informática</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            //background-image: url('Imágenes/fondo_verdozo.jpg'); /* Ruta de la imagen de fondo */
+            background-size: cover; /* Ajustar la imagen para que cubra todo el fondo */
+            background-position: center; /* Centrar la imagen de fondo */
+            background-attachment: fixed; /* Hacer que la imagen no se desplace al hacer scroll */
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            opacity: 0.95; /* Ligera transparencia para que el fondo sea visible detrás del contenido */
+        }
+        header {
+            display: flex;
+            align-items: center;
+            background-color: #007BFF; /* Color azul */
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+        }
+        header img {
+            width: 80px; /* Tamaño aumentado del ícono */
+            height: 80px;
+            margin-right: 15px; /* Separación entre el ícono y el texto */
+            border-radius: 50%; /* Si quieres que la imagen sea redonda */
+        }
+        h1, h2 {
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            text-align: left;
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .mensaje {
+            margin-top: 20px;
+            color: red;
+        }
+        .search-section {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="Imágenes/HGP_ICON.jpg" alt="Ícono del Hospital General Pediátrico">
+            <div>
+                <h4>Ministerio de Salud Pública y Bienestar Social</h4>
+                <h4>Hospital General Pediátrico "Niños de Acosta Ñu"</h4>
+                <h4>Departamento de Informática</h4>
+            </div>
+        </header>
+
+        <section class="form-section">
+            <h2>Crear nuevo ticket</h2>
+            <form action="guardar_ticket.php" method="POST" id="ticket-form">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="asunto">Asunto:</label>
+                <input type="text" id="asunto" name="asunto" required>
+
+                <label for="descripcion">Descripción del problema:</label>
+                <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+
+                <label for="servicio">Servicio del hospital:</label>
+                <select id="servicio" name="servicio" required>
+                    <option value="">Seleccione un servicio</option>
+                    <!-- Opciones de servicio... -->
+                </select>
+
+                <button type="submit">Enviar ticket</button>
+            </form>
+            <?php if (isset($error)) echo "<div class='mensaje'>$error</div>"; ?>
+        </section>
+
+        <section class="search-section">
+            <h2>Buscar Ticket</h2>
+            <form action="estado_ticket.php" method="GET">
+                <label for="ticket_id">ID del Ticket:</label>
+                <input type="text" id="ticket_id" name="ticket_id" required>
+                <button type="submit">Buscar</button>
+            </form>
+        </section>
+
+        <section class="whatsapp-section">
+            <h2>Contacto por WhatsApp</h2>
+            <a href="https://wa.me/595976263126" class="button" target="_blank">Contactar por WhatsApp</a>
+            <p>Número de teléfono corporativo del servicio</p>
+        </section>
+    </div>
+</body>
+</html>
